@@ -1,0 +1,94 @@
+﻿@model repo.ViewModels.VM_Car
+
+@{
+    ViewBag.Title = "AddWorkerToCar";
+}
+
+<h2>Dodaj pracownika do samochodu</h2>
+
+
+@using (Html.BeginForm("AddWorkerToCar", "Car", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <table class="table">
+        <tr>
+            <th>
+                Marka
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Model)
+            </th>
+            <th>
+                Rok produkcji
+            </th>
+            <th>
+                Data ostatniego przeglądu
+            </th>
+           
+            <th>
+                Pracownik
+            </th>
+            <th></th>
+        </tr>
+
+        @*@foreach (var item in Model)*@
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(model => model.Brand)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Model)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.YearOfProduction)
+            </td>
+            <td>
+                @{var date = Model.Date.ToShortDateString(); }
+                @Html.DisplayFor(model => date)
+            </td>
+           
+            <td>
+             @Html.DropDownListFor(model => model.WorkerId, new SelectList(Model.ListOfWorkers, "Id", "Surname"), "Wybierz pracownika", new { @class = "form-control" })
+
+        </td>
+            
+
+        </tr>
+
+        
+
+    </table>
+
+
+    <div class="form-horizontal">
+
+      
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zapisz" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Wróć", "Index")
+</div>
+<script type="text/javascript">
+
+    $(document).ready(() => {
+        $('.datepicker').datepicker({
+            dateFormat: 'dd-mm-yy',
+            maxDate: moment().format('DD-MM-YYYY')
+        });
+    });
+
+
+
+</script>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

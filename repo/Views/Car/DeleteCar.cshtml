@@ -1,0 +1,56 @@
+﻿@model repo.ViewModels.VM_Car
+
+@{
+    ViewBag.Title = "DeleteCar";
+}
+
+<h2>Usuń samochód</h2>
+
+<h3>Czy na pewno chcesz usnąć ten samochód?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Marka
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Brand)
+        </dd>
+
+        <dt>
+            Model
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Model)
+        </dd>
+
+        <dt>
+            Rok produkcji
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearOfProduction)
+        </dd>
+
+        @*<dt>
+            ID pracownika
+        </dt>*@
+
+        @*<dd>
+            @Html.DisplayFor(model => model.WorkerId)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Car", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć", "Index")
+        </div>
+    }
+</div>

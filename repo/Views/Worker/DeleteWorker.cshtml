@@ -1,0 +1,48 @@
+﻿@model repo.Models.Worker
+
+@{
+    ViewBag.Title = "DeleteWorker";
+}
+
+<h2>Usuń pracownika</h2>
+
+<h3>Czy na pewno chcesz usunąć tego pracownika?</h3>
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            Imię
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            Nazwisko
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+
+        <dt>
+            Stanowisko
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.JobPosition)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm("Delete", "Worker", FormMethod.Post)) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Usuń" class="btn btn-default" /> |
+            @Html.ActionLink("Wróć", "Index")
+        </div>
+    }
+</div>

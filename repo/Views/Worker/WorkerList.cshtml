@@ -1,0 +1,45 @@
+﻿@model IEnumerable<repo.Models.Worker>
+@using repo.Enums;
+@{
+    ViewBag.Title = "WorkerList";
+}
+
+<h2>Pracownicy</h2>
+
+<p>
+    @Html.ActionLink("Dodaj nowego pracownika", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Imię
+        </th>
+        <th>
+           Nazwisko
+        </th>
+        <th>
+            Stanowisko
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Surname)
+        </td>
+        <td>
+            @item.JobPosition.GetDisplayName()
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.Id }) |
+           
+            @Html.ActionLink("Usuń", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
