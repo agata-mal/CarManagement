@@ -9,9 +9,11 @@ namespace repo.Service
     public class CarService
     {
         private readonly CarRepository _carRepository;
+        private readonly EmailService _emailService;
         public CarService()
         {
             _carRepository = new CarRepository();
+            _emailService = new EmailService();
         }
         public void Create(Car model)
         {
@@ -27,6 +29,8 @@ namespace repo.Service
             var car = _carRepository.GetWhere(x => x.Id == model.Id).FirstOrDefault();
             car.WorkerId = model.WorkerId;
             _carRepository.Edit(car);
+            var message = _emailService.CreateMessage();
+            _emailService.SendMessage(message);
         }
         public void EditCar(Car car)
         {

@@ -168,6 +168,7 @@
     <Compile Include="Models\Worker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\CarService.cs" />
+    <Compile Include="Service\EmailService.cs" />
     <Compile Include="Service\WorkerService.cs" />
     <Compile Include="ViewModels\VM_Car.cs" />
   </ItemGroup>
